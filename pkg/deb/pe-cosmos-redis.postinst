@@ -1,6 +1,6 @@
 #! /bin/bash
 
-PACKAGE=cosmos-redis
+PACKAGE=pe-cosmos-redis
 USERNAME=cosmos
 USERID=4525
 GROUPNAME=cosmos

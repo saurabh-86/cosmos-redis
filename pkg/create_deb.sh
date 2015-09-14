@@ -1,5 +1,5 @@
 #!/bin/sh
-PACKAGE=cosmos-redis
+PACKAGE=pe-cosmos-redis
 PACKAGE_ROOT="./cosmos-redis-pkg"
 VERSION=$GO_PIPELINE_LABEL
 ARCH=all

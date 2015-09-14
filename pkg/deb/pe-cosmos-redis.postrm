@@ -1,6 +1,6 @@
 #! /bin/bash
 
-PACKAGE=cosmos-redis
+PACKAGE=pe-cosmos-redis
 if [ "$1" = "purge" ];then
 	rm -rf "/var/lib/$PACKAGE" "/etc/init.d/$PACKAGE" "/etc/$PACKAGE"
 fi

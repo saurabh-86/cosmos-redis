@@ -1,4 +1,4 @@
-Package: cosmos-redis
+Package: pe-cosmos-redis
 Version: VERSION 
 Section: web
 Priority: Optional

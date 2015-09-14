@@ -1,4 +1,4 @@
-PACKAGE=cosmos-redis
+PACKAGE=pe-cosmos-redis
 USERNAME=cosmos
 
 start() {
