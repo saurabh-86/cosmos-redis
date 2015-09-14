@@ -6,8 +6,6 @@ USERID=4525
 GROUPNAME=cosmos
 GROUPID=4500
 
-EXPORT PYTHONPATH=/var/lib/$PACKAGE/libs
-
 #create users if they don't exist
 if ! getent group $GROUPNAME > /dev/null; then
   groupadd -g $GROUPID $GROUPNAME || echo "$PKG : Adding group $GROUPNAME <<FAILURE>>"| tee -a /var/log/dpkg.log || true
@@ -20,25 +18,3 @@ fi
 chown -R $USERNAME:$GROUPNAME /var/lib/$PACKAGE
 chown -R $USERNAME:$GROUPNAME /etc/$PACKAGE
 chown $USERNAME:$GROUPNAME /etc/init.d/$PACKAGE
-chmod a+r /etc/confd/templates/*.tmpl
-chmod a+r /etc/confd/conf.d/*.toml
-
-# Fetch config bucket name from metadata
-if [[ -n $CONFIG_BUCKET ]]
-then
-	BUCKET=$CONFIG_BUCKET
-else
-	BUCKET=cosmos-storm
-fi
-
-# Replace bucket name in .toml
-sed -i -e "s/_BUCKET_/${BUCKET}/" /etc/confd/conf.d/athena.yml.toml
-sed -i -e "s/_BUCKET_/${BUCKET}/" /etc/confd/conf.d/athena_mystique.yml.toml
-
-# Restart confd
-sudo /etc/init.d/fk-config-service-confd restart
-
-# Wait for config file to be populated
-# while [ ! -e /etc/fk-athena-storm/athena.yml ]; do
-#    sleep 1s
-# done
