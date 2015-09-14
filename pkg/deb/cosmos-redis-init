@@ -1,0 +1,35 @@
+PACKAGE=cosmos-redis
+USERNAME=cosmos
+
+start() {
+    cd /var/lib/$PACKAGE
+    sudo -u $USERNAME nohup /bin/bash cosmos-redis.sh | /usr/bin/cosmos &
+    echo "Started $PACKAGE."
+}
+
+
+stop() {
+    pkill -KILL -f cosmos-redis.sh
+}
+
+restart() {
+    stop
+    start
+}
+
+case "$1" in
+	start)
+        start
+	;;
+	stop)
+		stop
+	;;
+	restart)
+        restart
+    ;;
+	*)
+		echo "USAGE: $0 start | stop | restart "
+		exit 3
+	;;
+esac
+
